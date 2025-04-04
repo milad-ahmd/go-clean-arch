@@ -23,7 +23,7 @@ func newMockUserRepository() *mockUserRepository {
 }
 
 // GetByID gets a user by ID
-func (m *mockUserRepository) GetByID(ctx context.Context, id int64) (*domain.User, error) {
+func (m *mockUserRepository) GetByID(_ context.Context, id int64) (*domain.User, error) {
 	user, ok := m.users[id]
 	if !ok {
 		return nil, &domain.NotFoundError{
@@ -35,7 +35,7 @@ func (m *mockUserRepository) GetByID(ctx context.Context, id int64) (*domain.Use
 }
 
 // GetByEmail gets a user by email
-func (m *mockUserRepository) GetByEmail(ctx context.Context, email string) (*domain.User, error) {
+func (m *mockUserRepository) GetByEmail(_ context.Context, email string) (*domain.User, error) {
 	for _, user := range m.users {
 		if user.Email == email {
 			return user, nil
@@ -48,7 +48,7 @@ func (m *mockUserRepository) GetByEmail(ctx context.Context, email string) (*dom
 }
 
 // GetByUsername gets a user by username
-func (m *mockUserRepository) GetByUsername(ctx context.Context, username string) (*domain.User, error) {
+func (m *mockUserRepository) GetByUsername(_ context.Context, username string) (*domain.User, error) {
 	for _, user := range m.users {
 		if user.Username == username {
 			return user, nil
@@ -61,14 +61,14 @@ func (m *mockUserRepository) GetByUsername(ctx context.Context, username string)
 }
 
 // Create creates a new user
-func (m *mockUserRepository) Create(ctx context.Context, user *domain.User) error {
+func (m *mockUserRepository) Create(_ context.Context, user *domain.User) error {
 	user.ID = int64(len(m.users) + 1)
 	m.users[user.ID] = user
 	return nil
 }
 
 // Update updates a user
-func (m *mockUserRepository) Update(ctx context.Context, user *domain.User) error {
+func (m *mockUserRepository) Update(_ context.Context, user *domain.User) error {
 	_, ok := m.users[user.ID]
 	if !ok {
 		return &domain.NotFoundError{
@@ -81,7 +81,7 @@ func (m *mockUserRepository) Update(ctx context.Context, user *domain.User) erro
 }
 
 // Delete deletes a user
-func (m *mockUserRepository) Delete(ctx context.Context, id int64) error {
+func (m *mockUserRepository) Delete(_ context.Context, id int64) error {
 	_, ok := m.users[id]
 	if !ok {
 		return &domain.NotFoundError{
@@ -94,7 +94,7 @@ func (m *mockUserRepository) Delete(ctx context.Context, id int64) error {
 }
 
 // List lists users with pagination
-func (m *mockUserRepository) List(ctx context.Context, limit, offset int) ([]*domain.User, error) {
+func (m *mockUserRepository) List(_ context.Context, limit, offset int) ([]*domain.User, error) {
 	var users []*domain.User
 	count := 0
 	for _, user := range m.users {

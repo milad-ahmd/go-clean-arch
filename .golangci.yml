@@ -8,9 +8,7 @@ linters:
     - typecheck
     - unused
     - gofmt
-    - goimports
     - misspell
-    - revive
   disable:
     - structcheck # deprecated
     - varcheck # deprecated
@@ -24,8 +22,6 @@ linters:
 linters-settings:
   gofmt:
     simplify: true
-  goimports:
-    local-prefixes: github.com/milad-ahmd/go-clean-arch
 
 issues:
   exclude-rules:
