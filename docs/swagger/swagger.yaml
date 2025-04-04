@@ -1,0 +1,161 @@
+swagger: "2.0"
+info:
+  title: Go Clean Architecture API
+  description: This is a sample server for a Go Clean Architecture API.
+  version: 1.0.0
+host: localhost:8080
+basePath: /
+schemes:
+  - http
+paths:
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns OK if the server is running
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: OK
+          schema:
+            type: string
+            example: "OK"
+  /auth/login:
+    post:
+      summary: Login user
+      description: Login user and get JWT token
+      tags:
+        - auth
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: request
+          description: Login Request
+          required: true
+          schema:
+            $ref: "#/definitions/LoginRequest"
+      responses:
+        200:
+          description: Successful login
+          schema:
+            $ref: "#/definitions/TokenResponse"
+        400:
+          description: Bad request
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+        401:
+          description: Unauthorized
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+  /auth/register:
+    post:
+      summary: Register user
+      description: Register a new user
+      tags:
+        - auth
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: request
+          description: Register Request
+          required: true
+          schema:
+            $ref: "#/definitions/RegisterRequest"
+      responses:
+        201:
+          description: User registered successfully
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              message:
+                type: string
+              username:
+                type: string
+              email:
+                type: string
+        400:
+          description: Bad request
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+        409:
+          description: Conflict
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+definitions:
+  LoginRequest:
+    type: object
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+        format: email
+      password:
+        type: string
+        minLength: 6
+  RegisterRequest:
+    type: object
+    required:
+      - username
+      - email
+      - password
+    properties:
+      username:
+        type: string
+        minLength: 3
+        maxLength: 50
+      email:
+        type: string
+        format: email
+      password:
+        type: string
+        minLength: 6
+  TokenResponse:
+    type: object
+    properties:
+      token:
+        type: string
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+      username:
+        type: string
+      email:
+        type: string
+      role:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+securityDefinitions:
+  BearerAuth:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: Type "Bearer" followed by a space and JWT token.
