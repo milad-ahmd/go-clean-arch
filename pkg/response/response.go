@@ -50,7 +50,7 @@ func NewResponse(success bool, message string, data interface{}, statusCode int)
 // NewErrorResponse creates a new error response
 func NewErrorResponse(message string, err error, statusCode int) *Response {
 	var errorData interface{}
-	
+
 	// Handle different error types
 	switch e := err.(type) {
 	case *errors.ValidationError:
@@ -78,9 +78,9 @@ func NewPaginatedResponse(message string, data interface{}, page, perPage, total
 	}
 
 	return &PaginatedResponse{
-		Success:    true,
-		Message:    message,
-		Data:       data,
+		Success: true,
+		Message: message,
+		Data:    data,
 		Meta: Meta{
 			Page:      page,
 			PerPage:   perPage,

@@ -12,17 +12,17 @@ import (
 
 // userUseCase implements domain.UserUseCase
 type userUseCase struct {
-	userRepo domain.UserRepository
+	userRepo   domain.UserRepository
 	jwtService domain.JWTService
-	logger   logger.Logger
+	logger     logger.Logger
 }
 
 // NewUserUseCase creates a new user use case
 func NewUserUseCase(userRepo domain.UserRepository, jwtService domain.JWTService, logger logger.Logger) domain.UserUseCase {
 	return &userUseCase{
-		userRepo: userRepo,
+		userRepo:   userRepo,
 		jwtService: jwtService,
-		logger:   logger,
+		logger:     logger,
 	}
 }
 

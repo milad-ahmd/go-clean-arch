@@ -9,19 +9,19 @@ import (
 var (
 	// ErrNotFound is returned when a resource is not found
 	ErrNotFound = errors.New("resource not found")
-	
+
 	// ErrInvalidInput is returned when the input is invalid
 	ErrInvalidInput = errors.New("invalid input")
-	
+
 	// ErrUnauthorized is returned when the user is not authorized
 	ErrUnauthorized = errors.New("unauthorized")
-	
+
 	// ErrForbidden is returned when the user is forbidden from accessing a resource
 	ErrForbidden = errors.New("forbidden")
-	
+
 	// ErrConflict is returned when there is a conflict
 	ErrConflict = errors.New("conflict")
-	
+
 	// ErrInternal is returned when there is an internal server error
 	ErrInternal = errors.New("internal server error")
 )

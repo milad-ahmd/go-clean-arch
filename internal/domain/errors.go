@@ -7,12 +7,12 @@ import (
 
 // Common errors
 var (
-	ErrNotFound        = errors.New("not found")
-	ErrInvalidInput    = errors.New("invalid input")
-	ErrInternalServer  = errors.New("internal server error")
-	ErrConflict        = errors.New("conflict")
-	ErrUnauthorized    = errors.New("unauthorized")
-	ErrForbidden       = errors.New("forbidden")
+	ErrNotFound       = errors.New("not found")
+	ErrInvalidInput   = errors.New("invalid input")
+	ErrInternalServer = errors.New("internal server error")
+	ErrConflict       = errors.New("conflict")
+	ErrUnauthorized   = errors.New("unauthorized")
+	ErrForbidden      = errors.New("forbidden")
 )
 
 // NotFoundError represents a not found error
