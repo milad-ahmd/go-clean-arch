@@ -2,6 +2,7 @@ package response
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -96,7 +97,12 @@ func NewPaginatedResponse(message string, data interface{}, page, perPage, total
 func JSON(w http.ResponseWriter, statusCode int, response interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
-	json.NewEncoder(w).Encode(response)
+	err := json.NewEncoder(w).Encode(response)
+	if err != nil {
+		// Log the error but can't really recover at this point
+		// as headers have already been sent
+		fmt.Println("Error encoding response:", err)
+	}
 }
 
 // Success sends a success response

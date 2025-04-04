@@ -3,6 +3,7 @@ package http
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -201,11 +202,19 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	response, err := json.Marshal(payload)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Internal Server Error"))
+		_, writeErr := w.Write([]byte("Internal Server Error"))
+		if writeErr != nil {
+			// Can't do much if writing fails, just log it
+			fmt.Println("Error writing response:", writeErr)
+		}
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
-	w.Write(response)
+	_, writeErr := w.Write(response)
+	if writeErr != nil {
+		// Can't do much if writing fails, just log it
+		fmt.Println("Error writing response:", writeErr)
+	}
 }

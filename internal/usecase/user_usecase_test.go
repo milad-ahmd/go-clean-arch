@@ -110,30 +110,30 @@ func (m *mockUserRepository) List(ctx context.Context, limit, offset int) ([]*do
 type mockLogger struct{}
 
 // Debug logs a debug message
-func (m *mockLogger) Debug(msg string, fields ...zapcore.Field) {}
+func (m *mockLogger) Debug(_ string, _ ...zapcore.Field) {}
 
 // Info logs an info message
-func (m *mockLogger) Info(msg string, fields ...zapcore.Field) {}
+func (m *mockLogger) Info(_ string, _ ...zapcore.Field) {}
 
 // Warn logs a warning message
-func (m *mockLogger) Warn(msg string, fields ...zapcore.Field) {}
+func (m *mockLogger) Warn(_ string, _ ...zapcore.Field) {}
 
 // Error logs an error message
-func (m *mockLogger) Error(msg string, fields ...zapcore.Field) {}
+func (m *mockLogger) Error(_ string, _ ...zapcore.Field) {}
 
 // Fatal logs a fatal message
-func (m *mockLogger) Fatal(msg string, fields ...zapcore.Field) {}
+func (m *mockLogger) Fatal(_ string, _ ...zapcore.Field) {}
 
 // mockJWTService is a mock implementation of domain.JWTService
 type mockJWTService struct{}
 
 // GenerateToken generates a mock token
-func (m *mockJWTService) GenerateToken(userID int64, username string, role domain.Role) (string, error) {
+func (m *mockJWTService) GenerateToken(_ int64, _ string, _ domain.Role) (string, error) {
 	return "mock-token", nil
 }
 
 // ValidateToken validates a mock token
-func (m *mockJWTService) ValidateToken(token string) (*domain.JWTClaims, error) {
+func (m *mockJWTService) ValidateToken(_ string) (*domain.JWTClaims, error) {
 	return &domain.JWTClaims{
 		UserID:   1,
 		Username: "testuser",

@@ -77,7 +77,10 @@ func Recover(logger logger.Logger) Middleware {
 						zap.String("path", r.URL.Path),
 					)
 					w.WriteHeader(http.StatusInternalServerError)
-					w.Write([]byte("Internal Server Error"))
+					_, writeErr := w.Write([]byte("Internal Server Error"))
+					if writeErr != nil {
+						logger.Error("Failed to write error response", zap.Error(writeErr))
+					}
 				}
 			}()
 

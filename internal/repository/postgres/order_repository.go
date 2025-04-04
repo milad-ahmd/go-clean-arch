@@ -158,7 +158,10 @@ func (r *orderRepository) Create(ctx context.Context, order *domain.Order) error
 	}
 	defer func() {
 		if err != nil {
-			tx.Rollback()
+			rbErr := tx.Rollback()
+			if rbErr != nil {
+				r.logger.Error("Failed to rollback transaction", zap.Error(rbErr))
+			}
 		}
 	}()
 
@@ -356,7 +359,10 @@ func (r *orderRepository) Delete(ctx context.Context, id int64) error {
 	}
 	defer func() {
 		if err != nil {
-			tx.Rollback()
+			rbErr := tx.Rollback()
+			if rbErr != nil {
+				r.logger.Error("Failed to rollback transaction", zap.Error(rbErr))
+			}
 		}
 	}()
 
@@ -565,7 +571,10 @@ func (r *orderRepository) AddOrderItem(ctx context.Context, item *domain.OrderIt
 	}
 	defer func() {
 		if err != nil {
-			tx.Rollback()
+			rbErr := tx.Rollback()
+			if rbErr != nil {
+				r.logger.Error("Failed to rollback transaction", zap.Error(rbErr))
+			}
 		}
 	}()
 
