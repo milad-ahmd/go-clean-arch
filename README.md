@@ -1,6 +1,6 @@
 # Go Clean Architecture
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/milad-ahmd/go-clean-arch)](https://goreportcard.com/report/github.com/milad-ahmd/go-clean-arch)
+[![Go Report Card](https://goreportcard.com/badge/github.com/milad-ahmd/go-clean-arch?refresh=1)](https://goreportcard.com/report/github.com/milad-ahmd/go-clean-arch)
 [![Go Reference](https://pkg.go.dev/badge/github.com/milad-ahmd/go-clean-arch.svg)](https://pkg.go.dev/github.com/milad-ahmd/go-clean-arch)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/milad-ahmd/go-clean-arch)](https://github.com/milad-ahmd/go-clean-arch)
